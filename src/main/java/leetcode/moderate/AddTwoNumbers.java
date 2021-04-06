@@ -18,7 +18,7 @@ public class AddTwoNumbers {
         ListNode l2 = new ListNode(5);
         l2.next = new ListNode(6);
         l2.next.next = new ListNode(4);
-        l2.next.next.next = new ListNode(9);
+//        l2.next.next.next = new ListNode(9);
 
         printListNode(l1);
         printListNode(l2);
@@ -28,14 +28,14 @@ public class AddTwoNumbers {
         printListNode(sumListNod);
     }
 
+
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode sumOfNumber = new ListNode(0);
         ListNode currentPoint = sumOfNumber;
-        ListNode previousPoint = sumOfNumber;
+        ListNode previousPoint = null;
         Boolean isCarry = false;
-        while (l1 != null || l2 != null) {
-            if (l1 != null && l2 != null) {
-
+        while (l1 != null) {
+            if (l2 != null) {
                 if (isCarry){
                     currentPoint.val = l1.val + l2.val + 1;
                     isCarry = false;
@@ -56,14 +56,13 @@ public class AddTwoNumbers {
                 l2 = l2.next;
 
                 continue;
-            }else if (l1 == null) {
-                previousPoint.next = l2;
-                break;
-            }else{
+            }else {
                 previousPoint.next = l1;
-                break;
             }
         }
+
+        if(l2 != null) previousPoint.next = l2;
+
         return sumOfNumber;
     }
 
